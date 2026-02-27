@@ -19,29 +19,9 @@ app.get("/", (req, res) => {
   res.send("Backend Running 🚀");
 });
 
-let isConnected = false;
-async function connectToMongoDB() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
 
-    isConnected = true;
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
-}
 
 // add middleware
-app.use((req, res,next) => {
-  if (!isConnected) {
-    connectToMongoDB()
-  }
-  next()
-})
-
 
 
 // const port = process.env.PORT || 5000;
@@ -49,4 +29,4 @@ app.use((req, res,next) => {
 // app.listen(port, () => {
 //     console.log(`Server running on port ${port} 🔥`);
 // });
-module.exports = app
+export default  app;
