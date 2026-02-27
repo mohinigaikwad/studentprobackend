@@ -15,6 +15,10 @@ db()
 
 app.use("/api/student/", studnetrouter  )
 
+app.get("/", (req, res) => {
+  res.send("Backend Running 🚀");
+});
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
